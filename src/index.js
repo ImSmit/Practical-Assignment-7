@@ -8,7 +8,10 @@ function Student(){
   var [product,setProduct] = React.useState([
     {id: 0, name: "milk", price: 100, quantity: 0},
     {id: 1, name: "tea", price: 200, quantity: 0},
-    {id: 2, name: "coffee", price: 300, quantity: 0}])
+    {id: 2, name: "coffee", price: 300, quantity: 0},
+    {id: 3, name: "cookies", price: 50, quantity: 0},
+    {id: 4, name: "Bread", price: 65, quantity: 0},
+    {id: 5, name: "Butter", price: 250, quantity: 0}])
    
     var [quantity,setQuantity] = React.useState(0);
     var [tprice,setTprice] = React.useState(0);
@@ -41,6 +44,7 @@ function Student(){
     return(
          <div className="maindiv">
            <table className="table">
+                               
                                 <tr>
                                   <th> Name </th>
                                   <th> Price </th>
