@@ -30,9 +30,10 @@ function Student(){
     }
       var decremant = (pri, index) => {
         if(tprice > 0){
-         setTprice(tprice - pri)
+         
           product.map((p) => {
-            if(p.id === index){
+            if(p.id === index && p.quantity > 0){
+              setTprice(tprice - pri)
               const newproduct = [...product];
               newproduct[index].quantity = p.quantity - 1
               setProduct(newproduct)
