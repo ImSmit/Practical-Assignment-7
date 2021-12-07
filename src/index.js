@@ -1,17 +1,87 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import './cart.css'
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function Student(){
+  var [product,setProduct] = React.useState([
+    {id: 0, name: "milk", price: 100, quantity: 0},
+    {id: 1, name: "tea", price: 200, quantity: 0},
+    {id: 2, name: "coffee", price: 300, quantity: 0}])
+   
+    var [quantity,setQuantity] = React.useState(0);
+    var [tprice,setTprice] = React.useState(0);
+    
+   
+  
+      var inceremant = (pri, index) => {
+      setTprice(tprice + pri)
+      product.map((p) => {
+        if(p.id === index){
+          const newproduct = [...product];
+          newproduct[index].quantity = p.quantity + 1
+          setProduct(newproduct)
+        }
+      })
+    }
+      var decremant = (pri, index) => {
+        if(tprice > 0){
+         setTprice(tprice - pri)
+          product.map((p) => {
+            if(p.id === index){
+              const newproduct = [...product];
+              newproduct[index].quantity = p.quantity - 1
+              setProduct(newproduct)
+            }
+          })
+        }
+   }
+    
+    return(
+         <div className="maindiv">
+           <table className="table">
+                                <tr>
+                                  <th> Name </th>
+                                  <th> Price </th>
+                                  <th>  </th>
+                                  <th> Quantity </th>
+                                  <th>  </th>
+                                  
+                                </tr>
+                                </table>
+        {product.map((p)=>
+                          <div>
+                              <table className="table">
+                                <tr>
+                                  <td>
+                                    {p.name}
+                                  </td>
+                                  <td>
+                                    {p.price}
+                                  </td>
+                                  <td>
+                                    <button onClick={() => inceremant(p.price,p.id)}>+</button>
+                                  </td>
+                                  <td>
+                                    {p.quantity}
+                                  </td>
+                                  <td>
+                                    <button onClick={() => decremant(p.price,p.id)}>-</button>
+                                  </td>
+                                </tr>
+                                 
+                              </table>
+                              
+                              
+                          </div>)}
+        <h1>Total Price = {tprice}</h1>
+    </div>
+    )
+  }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+ReactDOM.render(
+  <Student />,
+  document.getElementById('root')
+)
 reportWebVitals();
